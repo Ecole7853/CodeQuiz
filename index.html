@@ -9,18 +9,18 @@
 </head>
 <body>
     <header>
-        <li>View Highscores</li>
-        <li id=time>Time:10</li>
+        <a href id=highScore>View Highscores</a>
+        <div id=time>Time:60</div>
     </header>
     <div class=container>
         <div class=startPage>
             <h1 class=h1>
                 Coding Quiz Challenge
             </h1>
-            <content class=content>
+            <p class=content>
                 Try to answer the following code-related questions within the time limit. Keep in mind that the incorrect answers will penalize your score/time by ten seconds!
-            </content>
-            <button id=button>
+            </p>
+            <button id=start>
                 Start Quiz
             </button>
         </div>
@@ -34,6 +34,12 @@
             </ol>
             <p id=questionDetail>
                 </p>
+        </div>
+        <div class=initials>
+            <h1>Highscores</h1>
+            <input type=text></input>
+            <button class=goBack>Go Back</button>
+            <button class=clearHS>Clear Highscore</botton>
         </div>
     </div>
      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

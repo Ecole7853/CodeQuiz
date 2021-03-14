@@ -10,14 +10,15 @@ var answers = [
   {answer1: {a: "JavaScript", b: "terminal/bash",  c: "for loops",  d: "console.log"}},
   {answer2: {a: "quotes", b: "curly brackets", c: "paranthesis", d: "square brackets"}},
   {answer3: {a: "numbers and strings", b: "other arrays", c: "booleans", d: "all of the above"}},
-  {answer4: {a: "strings", b: "booleans", c: "alerts", d: "numbers"}}
+  {answer4: {a: "strings", b: "bookleans", c: "alerts", d: "numbers"}}
 ]
-var wrongAnswer = (secondsLeft = secondsLeft-2)
+var highScore = document.querySelector("#highScore")
+var wrongAnswer = (secondsLeft = secondsLeft-10)
 var li = $("<li></li>")
 var container = $(".container");
 var secondsLeft = (60);
 var timeEl = $("#time");
-var startButton =  document.querySelector("#button");
+var startButton =  document.querySelector("#start");
 function setTime() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
@@ -57,6 +58,7 @@ function question4() {
 }
 startButton.addEventListener("click", function(){
     $(".startPage").css("display","none")
+    $("questionDetail").css("display", "none")
     $("#questions").css("display","block")
     $("#questionText").append(questions[0].question1);
     $("#answer1").append(answers[0].answer1.a);
@@ -65,7 +67,7 @@ startButton.addEventListener("click", function(){
     $("#answer4").append(answers[0].answer1.d);
     li.addClass("#questions");
     document.querySelector("#answer1").addEventListener("click", function(){
-      $("#questionDetail").append("Wrong");
+      $("#questionDetail").text("Wrong");
       question2();
     })
     // document.querySelector("#answer2").addEventListener("click", function(){
@@ -82,16 +84,19 @@ startButton.addEventListener("click", function(){
     // })
 }
 )
-// $("#answer1").append(answers[0].answer2.a);
-// $("#answer2").append(answers[0].answer2.b);
-// $("#answer3").append(answers[0].answer2.c);
-// $("#answer4").append(answers[0].answer2.d);
-// li.addClass("#questions");
-// maybe add pause button
+
+highScore.addEventListener("click", function(e){
+  e.preventDefault()
+  container.children().css("display","none")
+  $(".initials").css("display","block")
+})
+// secondsLeft = secondsLeft-2 use this for incorrect answer (IMPORTANT)*******
+
+//for nick 
+// maybe add pause button****
 // clear score button
 // text box to enter initials link to scoreboard
 // set storage for wins/losses
 // localStorage.setItem("count", count);
 // function to display storage of wins/losses
 // init function to replace score
-// secondsLeft = secondsLeft-2 use this for incorrect answer (IMPORTANT)*******
