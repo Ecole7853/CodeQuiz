@@ -1,14 +1,23 @@
 // var startGame = 
 // var endGame = 
-// var questions = 
-// var answers = 
+var questions = [
+  {question1: "A very useful tool used during development and debugging for print content to the debugger is:"},
+  {question2: "The condition in an if / else statment is enclosed within ______."},
+  {question3: "Arrays in JavaScript can be used to store ______."},
+  {question4: "Commonly used data types DO NOT include:"}
+]
+var answers = [
+  {answer1: {a: "JavaScript", b: "terminal/bash",  c: "for loops",  d: "console.log"}},
+  {answer2: {a: "quotes", b: "curly brackets", c: "paranthesis", d: "square brackets"}},
+  {answer3: {a: "numbers and strings", b: "other arrays", c: "booleans", d: "all of the above"}},
+  {answer4: {a: "strings", b: "booleans", c: "alerts", d: "numbers"}}
+]
+var wrongAnswer = (secondsLeft = secondsLeft-2)
+var li = $("<li></li>")
 var container = $(".container");
-var secondsLeft = (30);
+var secondsLeft = (60);
 var timeEl = $("#time");
 var startButton =  document.querySelector("#button");
-//make variables that are the questions
-//variables for the answers
-//timer function
 function setTime() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
@@ -19,29 +28,67 @@ function setTime() {
       }
     }, 1000);
   }
-
-//addEventListener for start button
+function question2() {
+  $(".startPage").css("display","none")
+  $("#questions").css("display","block")
+  $("#questionText").append(questions[1].question2);
+  $("#answer1").append(answers[1].answer2.a);
+  $("#answer2").append(answers[1].answer2.b);
+  $("#answer3").append(answers[1].answer2.c);
+  $("#answer4").append(answers[1].answer2.d);
+}
+function question3() {
+  $(".startPage").css("display","none")
+  $("#questions").css("display","block")
+  $("#questionText").append(questions[2].question3);
+  $("#answer1").append(answers[2].answer3.a);
+  $("#answer2").append(answers[2].answer3.b);
+  $("#answer3").append(answers[2].answer3.c);
+  $("#answer4").append(answers[2].answer3.d);
+}
+function question4() {
+  $(".startPage").css("display","none")
+  $("#questions").css("display","block")
+  $("#questionText").append(questions[3].question3);
+  $("#answer1").append(answers[3].answer3.a);
+  $("#answer2").append(answers[3].answer3.b);
+  $("#answer3").append(answers[3].answer3.c);
+  $("#answer4").append(answers[3].answer3.d);
+}
 startButton.addEventListener("click", function(){
     $(".startPage").css("display","none")
-    container.append("<p> A very useful tool used during development and debugging for print content to the debugger is:</p>");
-    var orderedLists = $("<ol></ol>")
-    var li = $("<li></li>")
-    orderedLists.append("<li> JavaScript </li>");
-    orderedLists.append("<li> terminal/bash </li>");
-    orderedLists.append("<li> for loops </li>");
-    orderedLists.append("<li> console.log </li>");
-    li.addClass("question1UL");
-    container.append(orderedLists);
-})
-// addevent listern for the save button\
-// addEventListener("click", function()
+    $("#questions").css("display","block")
+    $("#questionText").append(questions[0].question1);
+    $("#answer1").append(answers[0].answer1.a);
+    $("#answer2").append(answers[0].answer1.b);
+    $("#answer3").append(answers[0].answer1.c);
+    $("#answer4").append(answers[0].answer1.d);
+    li.addClass("#questions");
+    document.querySelector("#answer1").addEventListener("click", function(){
+      $("#questionDetail").append("Wrong");
+      question2();
+    })
+    // document.querySelector("#answer2").addEventListener("click", function(){
+    //   wrongAnswer
+    //   question2();
+    // })
+    // document.querySelector("#answer3").addEventListener("click", function(){
+    //   wrongAnswer
+    //   question2();
+    // })
+    // document.querySelector("#answer4").addEventListener("click", function(){
+    //   wrongAnswer
+    //   question2();
+    // })
+}
+)
+// $("#answer1").append(answers[0].answer2.a);
+// $("#answer2").append(answers[0].answer2.b);
+// $("#answer3").append(answers[0].answer2.c);
+// $("#answer4").append(answers[0].answer2.d);
+// li.addClass("#questions");
 // maybe add pause button
-// addEventListener("click", function()
 // clear score button
-// addEventListener("click", function()
-// game over function
-// game start function
-// reduce time function
 // text box to enter initials link to scoreboard
 // set storage for wins/losses
 // localStorage.setItem("count", count);
