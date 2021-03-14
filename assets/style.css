@@ -51,3 +51,12 @@ header {
 .initials {
     display: none;
 }
+input {
+    background-color: lightpurple;
+}
+#highScoreList {
+    display:none;
+}
+.enterScore {
+    display:none;
+}
