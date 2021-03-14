@@ -1,0 +1,40 @@
+.container {
+  display: block;
+  margin: 80px auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 38vw;
+  height: 20vw;
+  background-color: white;
+  text-align: center;
+}
+#button {
+    padding: 10px;
+    margin: 10px 10px;
+    cursor: pointer;
+    border-radius:4px 4px 4px 4px;
+    font-size: 10px;
+    background-color: #790faa;
+    color: white;
+    width: 65px;    
+    height: 45px;
+    text-align:center;
+    align-items: center;    
+}
+header {
+    display:flex;
+    justify-content: space-between;
+}
+.question1UL {
+    padding: 10px;
+    margin: 10px 10px;
+    cursor: pointer;
+    border-radius:4px 4px 4px 4px;
+    font-size: 10px;
+    background-color: #790faa;
+    color: white;
+    width: 65px;    
+    height: 45px;
+    text-align:center;
+    align-items: center; 
+}
