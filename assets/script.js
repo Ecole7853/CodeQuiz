@@ -24,6 +24,8 @@ var secondsLeft = 30;
 var timeEl = $("#time");
 var startButton =  document.querySelector("#start");
 function setTime() {
+    secondsLeft=30;
+    $('#time').html("Time:" + secondsLeft);
     var timerInterval = setInterval(function() {
       secondsLeft--;
       $('#time').html("Time:" + secondsLeft);
@@ -41,7 +43,7 @@ function endGame(){
   $(".enterScore").css("display","block")
   submitBtn.addEventListener("click", function(){
     localStorage.setItem($("#name").val(), finalScore);
-    console.log($("#name"))
+    displayHighScores();
   })
 }
 function changeQuestion (){
@@ -113,22 +115,33 @@ startButton.addEventListener("click", function(){
     })
 }
 )
+function displayHighScores(){
+  container.children().css("display","none");
+  $(".initials").css("display","block");
+  $("#highScoreList").css("display","block");
+  $("#highScoreList").empty();
+  if(localStorage.length > 0){
+    var localStorageArray = new Array();
+    for (i=0;i<localStorage.length;i++){
+        localStorageArray[i] = localStorage.key(i)+localStorage.getItem(localStorage.key(i));
+        $("#highScoreList").append("<li>"+localStorage.key(i)+"-" + localStorage.getItem(localStorage.key(i))+"</li>")
+    }}
+}
 highScore.addEventListener("click", function(e){
-  e.preventDefault()
-  container.children().css("display","none")
-  $(".initials").css("display","block")
-  
+  e.preventDefault();
+  displayHighScores();
+})
+document.querySelector("#goBack").addEventListener("click", function(){
+  container.children().css("display","none");
+  $(".startPage").css("display","block");
+})
+document.querySelector("#clearHS").addEventListener("click", function(){
+  localStorage.clear();
+  $("#highScoreList").empty();
 })
 // secondsLeft = secondsLeft-2 use this for incorrect answer (IMPORTANT)*******
 
 //for nick 
 // maybe add pause button****
 // clear score button
-// text box to enter initials link to scoreboard
-// set storage for wins/losses
-// localStorage.setItem("count", count);
-// function to display storage of wins/losses
 // init function to replace score
-//   $("#questionDetail").text("Correct!");
-//<input type=text></input>
-//      secondsLeft -=10;
