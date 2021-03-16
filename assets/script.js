@@ -15,6 +15,7 @@ var questions = [
     answers: {a: "strings", b: "bookleans", c: "alerts", d: "numbers"},
     correctAnswer:"c"}
 ]
+var localStorageArray = new Array();
 var correctAnswersGiven = 0;
 var activeQuestion = 0;
 var highScore = document.querySelector("#highScore")
@@ -29,11 +30,12 @@ function setTime() {
     var timerInterval = setInterval(function() {
       secondsLeft--;
       $('#time').html("Time:" + secondsLeft);
-      if(secondsLeft <= 0) {
-        clearInterval(timerInterval);
+      if (activeQuestion==4 || secondsLeft <= 0) {
+        clearTimeout(timerInterval);
         endGame();
       }
-    }, 1000);
+      }
+    , 1000);
   }
 function endGame(){
   var finalScore = correctAnswersGiven*secondsLeft
@@ -61,58 +63,17 @@ function changeQuestion (){
 }
 startButton.addEventListener("click", function(){
     setTime()
+    activeQuestion = 0;
     $(".startPage").css("display","none")
     $("questionDetail").css("display", "none")
     $("#questions").css("display","block")
+    $("#questionDetail").empty();
     $("#questionText").text(questions[activeQuestion].question);
     $("#answer1").text(questions[activeQuestion].answers.a);
     $("#answer2").text(questions[activeQuestion].answers.b);
     $("#answer3").text(questions[activeQuestion].answers.c);
     $("#answer4").text(questions[activeQuestion].answers.d);
     li.addClass("#questions");
-    document.querySelector("#answer1").addEventListener("click", function(){
-      if (questions[activeQuestion].correctAnswer=="a"){
-        $("#questionDetail").text("Correct!");
-        correctAnswersGiven +=1;
-      }
-      else {
-        $("#questionDetail").text("Wrong!")
-        secondsLeft -=10;
-      }
-      changeQuestion();
-    })
-    document.querySelector("#answer2").addEventListener("click", function(){
-      if (questions[activeQuestion].correctAnswer=="b"){
-        $("#questionDetail").text("Correct!");
-        correctAnswersGiven +=1;
-      }
-      else {
-        $("#questionDetail").text("Wrong!")
-        secondsLeft -=10;
-      }
-      changeQuestion();
-    })
-    document.querySelector("#answer3").addEventListener("click", function(){
-      if (questions[activeQuestion].correctAnswer=="c"){
-        $("#questionDetail").text("Correct!");
-        correctAnswersGiven +=1;
-      }
-      else {
-        $("#questionDetail").text("Wrong!")
-        secondsLeft -=10;
-      }
-      changeQuestion();
-    })
-    document.querySelector("#answer4").addEventListener("click", function(){
-      if (questions[activeQuestion].correctAnswer=="d"){
-        $("#questionDetail").text("Correct!");
-        correctAnswersGiven +=1;
-      }
-      else {$("#questionDetail").text("Wrong!")
-      secondsLeft -=10;
-      }
-      changeQuestion();
-    })
 }
 )
 function displayHighScores(){
@@ -121,7 +82,6 @@ function displayHighScores(){
   $("#highScoreList").css("display","block");
   $("#highScoreList").empty();
   if(localStorage.length > 0){
-    var localStorageArray = new Array();
     for (i=0;i<localStorage.length;i++){
         localStorageArray[i] = localStorage.key(i)+localStorage.getItem(localStorage.key(i));
         $("#highScoreList").append("<li>"+localStorage.key(i)+"-" + localStorage.getItem(localStorage.key(i))+"</li>")
@@ -132,16 +92,56 @@ highScore.addEventListener("click", function(e){
   displayHighScores();
 })
 document.querySelector("#goBack").addEventListener("click", function(){
+  correctAnswersGiven = 0;
   container.children().css("display","none");
   $(".startPage").css("display","block");
 })
 document.querySelector("#clearHS").addEventListener("click", function(){
   localStorage.clear();
+  questions.correctAnswer = empty();
   $("#highScoreList").empty();
 })
-// secondsLeft = secondsLeft-2 use this for incorrect answer (IMPORTANT)*******
 
-//for nick 
-// maybe add pause button****
-// clear score button
-// init function to replace score
+document.querySelector("#answer1").addEventListener("click", function(){
+  if (questions[activeQuestion].correctAnswer=="a"){
+    $("#questionDetail").text("Correct!");
+    correctAnswersGiven +=1;
+  }
+  else {
+    $("#questionDetail").text("Wrong!")
+    secondsLeft -=10;
+  }
+  changeQuestion();
+})
+document.querySelector("#answer2").addEventListener("click", function(){
+  if (questions[activeQuestion].correctAnswer=="b"){
+    $("#questionDetail").text("Correct!");
+    correctAnswersGiven +=1;
+  }
+  else {
+    $("#questionDetail").text("Wrong!")
+    secondsLeft -=10;
+  }
+  changeQuestion();
+})
+document.querySelector("#answer3").addEventListener("click", function(){
+  if (questions[activeQuestion].correctAnswer=="c"){
+    $("#questionDetail").text("Correct!");
+    correctAnswersGiven +=1;
+  }
+  else {
+    $("#questionDetail").text("Wrong!")
+    secondsLeft -=10;
+  }
+  changeQuestion();
+})
+document.querySelector("#answer4").addEventListener("click", function(){
+  if (questions[activeQuestion].correctAnswer=="d"){
+    $("#questionDetail").text("Correct!");
+    correctAnswersGiven +=1;
+  }
+  else {$("#questionDetail").text("Wrong!")
+  secondsLeft -=10;
+  }
+  changeQuestion();
+})
